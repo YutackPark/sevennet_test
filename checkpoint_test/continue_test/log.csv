@@ -1,0 +1,2 @@
+Epoch,Learning_rate,Train_Energy_RMSE (eV/atom),Valid_Energy_RMSE (eV/atom),Train_Force_RMSE (eV/Å),Valid_Force_RMSE (eV/Å),Train_Stress_RMSE (kbar),Valid_Stress_RMSE (kbar),Train_TotalLoss,Valid_TotalLoss
+494,0.000500,18.800127,18.784527,0.583325,0.543589,170.739556,153.820373,0.195580,0.194750

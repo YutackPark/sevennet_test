@@ -1,0 +1,23 @@
+  units            metal
+  boundary         p p p
+  box tilt large
+  read_data        /home/parkyutack/tests_sevennet/checkpoint_test/e3gnn_parallel_211/lammps_stct
+
+  replicate 2 1 1
+
+  mass * 1.0  # do not matter since we don't run MD
+
+  pair_style       e3gnn/parallel
+  pair_coeff       * * 5 /home/parkyutack/tests_sevennet/checkpoint_test/potential/parallel_0.pt /home/parkyutack/tests_sevennet/checkpoint_test/potential/parallel_1.pt /home/parkyutack/tests_sevennet/checkpoint_test/potential/parallel_2.pt /home/parkyutack/tests_sevennet/checkpoint_test/potential/parallel_3.pt /home/parkyutack/tests_sevennet/checkpoint_test/potential/parallel_4.pt O Hf
+
+  timestep         0.002
+
+  compute pa all pe/atom
+
+  thermo          1
+  fix 1 all nve
+  thermo_style    custom step tpcpu pe ke vol pxx pyy pzz pxy pxz pyz press temp
+  dump            mydump all custom 1 force.dump id type element c_pa x y z fx fy fz
+  dump_modify    mydump sort id element O Hf
+
+  run 0
